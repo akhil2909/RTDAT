@@ -55,7 +55,7 @@ public class LoginController implements Initializable {
         LoginInfo.setUsername(username);
         mainAnchorPane.getChildren().remove(0);
         try {
-            Node n=FXMLLoader.load(getClass().getResource("/com/banking/fxmls/DataFolder.fxml"));
+            Node n=FXMLLoader.load(getClass().getResource("/com/banking/fxmls/data_folder.fxml"));
             mainAnchorPane.getChildren().add(n);
         } catch (IOException ex) {
             Logger.getLogger(UserInfoController.class.getName()).log(Level.SEVERE, null, ex);

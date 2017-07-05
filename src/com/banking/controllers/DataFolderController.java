@@ -6,6 +6,8 @@
 package com.banking.controllers;
 
 import com.banking.utils.LoginInfo;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -38,18 +40,18 @@ import javafx.stage.PopupWindow;
 public class DataFolderController implements Initializable {
     @FXML
     private AnchorPane dataFolderAnchorPane;
+//    @FXML
+//    private Label title;
     @FXML
-    private Label title;
+    private JFXButton nextButton;
     @FXML
-    private Button nextButton;
+    private JFXButton browseButton;
     @FXML
-    private Button browseButton;
+    private JFXTextField folderPathField;
     @FXML
-    private TextField folderPathField;
+    private JFXButton createButton;
     @FXML
-    private Button createButton;
-    @FXML
-    private TextField runNameField;
+    private JFXTextField runNameField;
     @FXML
     private Label runDirectory;
 
@@ -61,9 +63,9 @@ public class DataFolderController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        title.setText("Test Data Management");
-        title.setTextFill(Color.web("red"));
-        title.setFont(Font.font(16));
+        //title.setText("Test Data Management");
+        //title.setTextFill(Color.web("red"));
+        //title.setFont(Font.font(16));
         AnchorPane.setTopAnchor(dataFolderAnchorPane, 0.0);
         AnchorPane.setBottomAnchor(dataFolderAnchorPane, 0.0);
         AnchorPane.setLeftAnchor(dataFolderAnchorPane, 0.0);
@@ -83,7 +85,7 @@ public class DataFolderController implements Initializable {
     private void handleNextButton(ActionEvent event) throws IOException 
     {
         dataFolderAnchorPane.getChildren().remove(0);
-        Node n=FXMLLoader.load(getClass().getResource("/com/banking/fxmls/ModulesList.fxml"));
+        Node n=FXMLLoader.load(getClass().getResource("/com/banking/fxmls/module_list.fxml"));
         dataFolderAnchorPane.getChildren().add(n);
     }
 

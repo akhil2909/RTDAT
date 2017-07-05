@@ -79,6 +79,7 @@ public class ExcelReader
     }
     public static List<String> getModulesList()
     {
+        System.out.println("@@@ getModulesList");
         modulesList=new ArrayList<>();
         for(int i=0;i<sheet.getPhysicalNumberOfRows();i++)
         {
