@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <StackPane layoutY="6.0" prefHeight="550.0" prefWidth="800.0">
+         <children>
+            <VBox prefHeight="550.0" prefWidth="800.0">
+               <children>
+                  <Pane prefHeight="83.0" prefWidth="800.0" style="-fx-background-color: #2196f3;" />
+                  <Pane prefHeight="474.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <HBox layoutY="7.0" prefHeight="459.0" prefWidth="809.0">
+                           <children>
+                              <AnchorPane prefHeight="459.0" prefWidth="209.0" style="-fx-background-color: #d1d1d1;">
+                                 <children>
+                                    <JFXListView fx:id="jfxModelList" prefHeight="459.0" prefWidth="236.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="459.0" prefWidth="583.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
