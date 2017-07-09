@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="JFXAnchorPane" prefHeight="519.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.banking.controllers.ModuleListController">
+<AnchorPane fx:id="JFXAnchorPane" prefHeight="519.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.banking.controllers.ModuleController">
     <stylesheets>
         <URL value="@/com/banking/fxmls/module_list.css" />
     </stylesheets>

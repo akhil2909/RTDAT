@@ -85,7 +85,7 @@ public class DataFolderController implements Initializable {
     private void handleNextButton(ActionEvent event) throws IOException 
     {
         dataFolderAnchorPane.getChildren().remove(0);
-        Node n=FXMLLoader.load(getClass().getResource("/com/banking/fxmls/module_list.fxml"));
+        Node n=FXMLLoader.load(getClass().getResource("/com/banking/fxmls/module_list_new.fxml"));
         dataFolderAnchorPane.getChildren().add(n);
     }
 

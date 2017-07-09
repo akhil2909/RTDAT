@@ -10,6 +10,7 @@ import com.banking.utils.LoginInfo;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXToolbar;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -47,26 +48,22 @@ import javafx.scene.text.Font;
  */
 public class ModuleListController implements Initializable {
 
-    @FXML
-    JFXListView<Label> jfxListView;
+   @FXML
+   private JFXListView<Label> jfxListView;
 
-    @FXML
     AnchorPane JFXAnchorPane;
 
-    @FXML
     private VBox modulesListVBox;
-    @FXML
     private HBox hBox;
     @FXML
-    private StackPane vboxSP;
+    private JFXListView moduleListView;
+    
     StackPane sp = new StackPane();
     VBox vb = new VBox();
     List<JFXButton> buttonList = null;
 
-    @FXML
     JFXButton homeButton;
 
-    @FXML
     JFXToolbar jfxToolbar;
 
     String status = null;
@@ -76,7 +73,7 @@ public class ModuleListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        vb.setMaxWidth(VBox.USE_PREF_SIZE);
+       /* vb.setMaxWidth(VBox.USE_PREF_SIZE);
         vb.setSpacing(10);
         sp.getChildren().add(vb);
         sp.setPrefHeight(200);
@@ -88,19 +85,18 @@ public class ModuleListController implements Initializable {
         AnchorPane.setTopAnchor(JFXAnchorPane, 0.0);
         AnchorPane.setBottomAnchor(JFXAnchorPane, 0.0);
         AnchorPane.setLeftAnchor(JFXAnchorPane, 0.0);
-        AnchorPane.setRightAnchor(JFXAnchorPane, 0.0);
+        AnchorPane.setRightAnchor(JFXAnchorPane, 0.0);*/
 
         if (LoginInfo.getStat().equals("process")) {
             moduleName = ExcelReader.getModuleSelected();
             // JFXAnchorPane.setStyle("-fx-background-image: url(\"/com/banking/css/"+moduleName.replace(" ","")+".jpg\");"); 
             LoginInfo.setStat("module");
-
             displayProcessList(ExcelReader.getProcessList(ExcelReader.getModuleSelected()));
         } else {
             displayModulesList();
         }
 
-        JFXAnchorPane.getStylesheets().add(ModuleListController.class.getResource("/com/banking/css/jfoenix-components.css").toExternalForm());
+//        JFXAnchorPane.getStylesheets().add(ModuleListController.class.getResource("/com/banking/css/jfoenix-components.css").toExternalForm());
 
     }
 
@@ -109,20 +105,20 @@ public class ModuleListController implements Initializable {
         List<String> list = ExcelReader.getModulesList();
         System.out.println("Module count:" + list.size());
 
-        homeButton.setVisible(false);
-
-        buttonList = new ArrayList<>();
+//        homeButton.setVisible(false);
+//
+//        buttonList = new ArrayList<>();
         status = "module";
 
-        int split = 0;
-        if (list.size() > 10) {
-            hBox.getChildren().add(sp);
-            split = list.size() / 2;
-        }
+      
         int i = 1;
         for (String s : list) {
+            
+            jfxListView.getItems().add(new Label(s));
+             jfxListView.depthProperty().set(1);
+            jfxListView.setExpanded(true);
             // System.out.println("S"+s);
-            JFXButton button = new JFXButton();
+           /* JFXButton button = new JFXButton();
             button.getStyleClass().add("button-raised");
 
             if (i > split) {
@@ -138,24 +134,38 @@ public class ModuleListController implements Initializable {
                 modulesListVBox.getChildren().add(button);
             }
 
-            button.setOnAction(new EventHandler<ActionEvent>() {
-
-                @Override
-                public void handle(ActionEvent t) {
-//                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    System.out.println(button.getText());
-                    ExcelReader.setModuleSelected(button.getText());
-                    modulesListVBox.getChildren().removeAll(buttonList);
-                    vb.getChildren().removeAll(buttonList);
-                    moduleName = button.getText();
-                    // modulesListAnchorPane.setStyle("-fx-background-image: url(\"/com/banking/css/"+moduleName.replace(" ","")+".jpg\");");
-                    displayProcessList(ExcelReader.getProcessList(ExcelReader.getModuleSelected()));
-                }
-            });
-            i++;
+//            button.setOnAction(new EventHandler<ActionEvent>() {
+//
+//                @Override
+//                public void handle(ActionEvent t) {
+////                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                    System.out.println(button.getText());
+//                    ExcelReader.setModuleSelected(button.getText());
+//                    modulesListVBox.getChildren().removeAll(buttonList);
+//                    vb.getChildren().removeAll(buttonList);
+//                    moduleName = button.getText();
+//                    // modulesListAnchorPane.setStyle("-fx-background-image: url(\"/com/banking/css/"+moduleName.replace(" ","")+".jpg\");");
+//                    displayProcessList(ExcelReader.getProcessList(ExcelReader.getModuleSelected()));
+//                }
+//            });*/
+           
         }
-
+        
+        jfxListView.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>(){
+            @Override
+            public void handle(javafx.scene.input.MouseEvent event) {
+                System.out.println(jfxListView.getSelectionModel().getSelectedItem().getText());
+                String itemSelected = jfxListView.getSelectionModel().getSelectedItem().getText().toString();
+                 ExcelReader.setModuleSelected(itemSelected);
+                 
+            }
+            
+        });
+        
+        
     }
+    
+  
 
     public void displayProcessList(List<String> processList) {
 
@@ -271,4 +281,5 @@ public class ModuleListController implements Initializable {
         }
     }
 
+   
 }
