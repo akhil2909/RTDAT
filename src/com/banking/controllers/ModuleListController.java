@@ -51,9 +51,12 @@ public class ModuleListController implements Initializable {
    @FXML
    private JFXListView<Label> jfxListView;
 
-    AnchorPane JFXAnchorPane;
+   @FXML
+   private AnchorPane JFXAnchorPane;
 
+    @FXML
     private VBox modulesListVBox;
+    @FXML
     private HBox hBox;
     @FXML
     private JFXListView moduleListView;
@@ -113,50 +116,27 @@ public class ModuleListController implements Initializable {
       
         int i = 1;
         for (String s : list) {
-            
+            System.out.println("@@@ dispplay Module List");
             jfxListView.getItems().add(new Label(s));
-             jfxListView.depthProperty().set(1);
-            jfxListView.setExpanded(true);
-            // System.out.println("S"+s);
-           /* JFXButton button = new JFXButton();
-            button.getStyleClass().add("button-raised");
-
-            if (i > split) {
-                System.out.println("i>split" + s);
-                button.setText(s);
-                buttonList.add(button);
-                vb.getChildren().add(button);
-            } else {
-                System.out.println("i<split" + s);
-                // Button b=new Button(s);
-                button.setText(s);
-                buttonList.add(button);
-                modulesListVBox.getChildren().add(button);
-            }
-
-//            button.setOnAction(new EventHandler<ActionEvent>() {
-//
-//                @Override
-//                public void handle(ActionEvent t) {
-////                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//                    System.out.println(button.getText());
-//                    ExcelReader.setModuleSelected(button.getText());
-//                    modulesListVBox.getChildren().removeAll(buttonList);
-//                    vb.getChildren().removeAll(buttonList);
-//                    moduleName = button.getText();
-//                    // modulesListAnchorPane.setStyle("-fx-background-image: url(\"/com/banking/css/"+moduleName.replace(" ","")+".jpg\");");
-//                    displayProcessList(ExcelReader.getProcessList(ExcelReader.getModuleSelected()));
-//                }
-//            });*/
+            jfxListView.depthProperty().set(2);
+            jfxListView.setExpanded(true);     
            
         }
         
         jfxListView.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>(){
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
+                
+                System.out.println("@@@ dispplay Module List Clicked");
+                if(buttonList != null){
+                 modulesListVBox.getChildren().removeAll(buttonList);                 
+                 vb.getChildren().removeAll(buttonList);
+                }
                 System.out.println(jfxListView.getSelectionModel().getSelectedItem().getText());
                 String itemSelected = jfxListView.getSelectionModel().getSelectedItem().getText().toString();
-                 ExcelReader.setModuleSelected(itemSelected);
+                 ExcelReader.setModuleSelected(itemSelected);    
+//                  modulesListVBox.setStyle("-fx-background-image: url(\"/com/banking/css/"+moduleName.replace(" ","")+".jpg\");");
+                   displayProcessList(ExcelReader.getProcessList(ExcelReader.getModuleSelected()));            
                  
             }
             
@@ -169,9 +149,10 @@ public class ModuleListController implements Initializable {
 
     public void displayProcessList(List<String> processList) {
 
-        homeButton.setVisible(true);
-        homeButton.getStyleClass().add("button-home-raised");
-
+       // homeButton.setVisible(true);
+       // homeButton.getStyleClass().add("button-home-raised");
+       modulesListVBox.getStylesheets().add(ModuleListController.class.getResource("/com/banking/css/jfoenix-components.css").toExternalForm());
+                    
         status = "process";
         buttonList = new ArrayList<>();
         //headerLabel.setText("Business Processes for "+ExcelReader.getModuleSelected());
@@ -196,10 +177,12 @@ public class ModuleListController implements Initializable {
             button1.setWrapText(true);
             if (splitCount > split && processList.size() > 10) {
                 button1.setText(s);
+                System.out.println("178");
                 buttonList.add(button1);
                 vb.getChildren().add(button1);
             } else {
                 button1.setText(s);
+                System.out.println("183");
                 buttonList.add(button1);
                 modulesListVBox.getChildren().add(button1);
             }
@@ -207,7 +190,7 @@ public class ModuleListController implements Initializable {
             button1.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                     JFXAnchorPane.getStylesheets().add(ModuleListController.class.getResource("/com/banking/css/jfoenix-components.css").toExternalForm());
+                     modulesListVBox.getStylesheets().add(ModuleListController.class.getResource("/com/banking/css/jfoenix-components.css").toExternalForm());
                     ExcelReader.setProcessSelected(button1.getText());
                     System.out.println("process Action" + button1.getText());
                     subProcess = ExcelReader.getSubProcess(ExcelReader.getModuleSelected());
@@ -234,8 +217,9 @@ public class ModuleListController implements Initializable {
                                 @Override
                                 public void handle(ActionEvent event) {
                                     ExcelReader.setSubFunctionSelected(spb.getText());
-                                    JFXAnchorPane.getChildren().remove(0);
+                                    modulesListVBox.getChildren().remove(0);                                    
                                     try {
+                                        System.out.println("YYY");
                                         Node n = FXMLLoader.load(getClass().getResource("/com/banking/fxmls/field1.fxml"));
                                         JFXAnchorPane.getChildren().add(n);
                                     } catch (IOException ex) {
@@ -245,8 +229,8 @@ public class ModuleListController implements Initializable {
                         }
 
                     } else {
-                        System.out.println("Fields......");
-                        JFXAnchorPane.getChildren().remove(0);
+                        System.out.println("XXX");
+                        modulesListVBox.getChildren().remove(0);
                         try {
                             Node n=FXMLLoader.load(getClass().getResource("/com/banking/fxmls/field1.fxml"));
                             JFXAnchorPane.getChildren().add(n);
@@ -257,14 +241,14 @@ public class ModuleListController implements Initializable {
 
         }
 
-        homeButton.setOnAction((ActionEvent t) -> {
-            try {
-                
-                handleBackButton(t);
-            } catch (IOException ex) {
-                Logger.getLogger(ModuleListController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+//        homeButton.setOnAction((ActionEvent t) -> {
+//            try {
+//                
+//                handleBackButton(t);
+//            } catch (IOException ex) {
+//                Logger.getLogger(ModuleListController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        });
 
     }
 

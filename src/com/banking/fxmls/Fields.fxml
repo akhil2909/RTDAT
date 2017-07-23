@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -20,7 +21,7 @@
                      <children>
                         <VBox>
                            <children>
-                              <TreeView fx:id="treeActions" prefHeight="270.0" prefWidth="200.0" />
+                              <TreeView fx:id="treeActions" prefHeight="255.0" prefWidth="200.0" />
                               <StackPane prefHeight="60.0" prefWidth="200.0">
                                  <children>
                                     <Label fx:id="statusLabel" />
@@ -51,23 +52,22 @@
                            </columnResizePolicy>
                         </TableView>
                      </children>
+                     <StackPane.margin>
+                        <Insets top="10.0" />
+                     </StackPane.margin>
                   </HBox>
                </children>
             </StackPane>
          </center>
          <top>
-            <StackPane prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <StackPane prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="titleLable" text="Label" />
                </children>
             </StackPane>
          </top>
          <bottom>
-            <StackPane prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
-               </children>
-            </StackPane>
+            <StackPane prefHeight="80.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </children>

@@ -34,7 +34,7 @@ public class UserInfoController implements Initializable {
     @FXML
     private PasswordField passwordField;
     @FXML
-    private TextField userNameField;
+    private TextField usernameField;
 
     /**
      * Initializes the controller class.
@@ -50,7 +50,7 @@ public class UserInfoController implements Initializable {
     @FXML
     private void handleLoginButton(ActionEvent event) 
     {
-        String username=userNameField.getText();
+        String username=usernameField.getText();
         LoginInfo.setUsername(username);
         mainAnchorPane.getChildren().remove(0);
         try {
